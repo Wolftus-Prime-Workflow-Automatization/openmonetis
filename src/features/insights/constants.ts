@@ -122,6 +122,11 @@ export const AVAILABLE_MODELS = [
 	},
 
 	// Ollama
+	{
+		id: "ollama:qwen2.5-coder:7b",
+		name: "Qwen 2.5 Coder 7B",
+		provider: "ollama" as const,
+	},
 	{ id: "ollama:llama3.2", name: "Llama 3.2", provider: "ollama" as const },
 	{ id: "ollama:llama3.1", name: "Llama 3.1", provider: "ollama" as const },
 	{ id: "ollama:qwen2.5", name: "Qwen 2.5", provider: "ollama" as const },
