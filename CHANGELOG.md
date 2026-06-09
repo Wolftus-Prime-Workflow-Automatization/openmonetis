@@ -5,6 +5,13 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [2.7.4] - 2026-06-09
+
+Esta versão corrige o fluxo de revisão de lançamentos compartilhados para que o acesso somente leitura proteja os dados originais sem impedir que a pessoa copie movimentos para a própria conta.
+
+### Corrigido
+- Pessoas: lançamentos de uma pessoa compartilhada em modo somente leitura agora podem ser selecionados e importados para a conta do usuário logado, tanto individualmente quanto em lote, mantendo edição e remoção bloqueadas no lançamento original.
+
 ## [2.7.3] - 2026-07-23
 
 Esta versão fecha vulnerabilidades críticas de dependências e reduz a superfície de SSRF no otimizador de imagens, além de tornar o segredo de autenticação obrigatório em produção. Também melhora pontos de leitura no self-hosted (fatura paga, origins confiáveis) e atualiza o pipeline de PDF.
