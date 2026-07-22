@@ -103,7 +103,9 @@ docker-compose.override.yml
 # Arquivos de configuração de assistentes de IA
 .claude/
 .gemini/
-.cursor/
+.cursor/*
+!.cursor/approval-policies/
+!.cursor/approval-policies/**
 QWEN.md
 AGENTS.md
 .codex
