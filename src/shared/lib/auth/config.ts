@@ -14,8 +14,15 @@ import { normalizeNameFromEmail } from "@/shared/lib/payers/utils";
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+const betterAuthSecret = process.env.BETTER_AUTH_SECRET?.trim();
 const DEFAULT_SESSION_EXPIRES_IN_DAYS = 30;
 const DEFAULT_SESSION_UPDATE_AGE_HOURS = 24;
+
+if (process.env.NODE_ENV === "production" && !betterAuthSecret) {
+	throw new Error(
+		"BETTER_AUTH_SECRET is required in production. Set it in your environment.",
+	);
+}
 
 function parsePositiveIntegerEnv(name: string, fallback: number): number {
 	const value = process.env[name];
@@ -65,6 +72,7 @@ function getNameFromGoogleProfile(profile: GoogleProfile): string {
 export const auth = betterAuth({
 	// Base URL configuration
 	baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+	secret: betterAuthSecret,
 
 	// Trust host configuration for production environments
 	trustedOrigins: process.env.BETTER_AUTH_URL

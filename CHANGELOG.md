@@ -5,6 +5,17 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [2.7.3] - 2026-07-23
+
+Esta versão fecha vulnerabilidades críticas de dependências e reduz a superfície de SSRF no otimizador de imagens, além de tornar o segredo de autenticação obrigatório em produção.
+
+### Alterado
+- Dependências: `next` atualizado para `16.2.11` (advisories de SSRF, DoS e bypass de middleware).
+- Dependências: override `sharp: ">=0.35.0"` para puxar libvips patchado.
+- Imagens: `images.remotePatterns` restrito a `lh3.googleusercontent.com`, `img.logo.dev` e, quando definido, o host de `S3_ENDPOINT` — removidos wildcards `http/**` e `https/**`.
+- Docker Compose: `BETTER_AUTH_SECRET` passa a falhar na subida se estiver vazio (`:?required`).
+- Autenticação: fail-fast em produção quando `BETTER_AUTH_SECRET` está ausente, e o secret é passado explicitamente ao `betterAuth()`.
+
 ## [2.7.2] - 2026-05-31
 
 Esta versão atualiza as imagens de apresentação do OpenMonetis na landing page e no compartilhamento em redes sociais.
