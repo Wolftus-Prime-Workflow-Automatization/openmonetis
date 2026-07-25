@@ -21,7 +21,16 @@ interface LogoMappingResponse {
 async function fetchLogoMapping(name: string): Promise<LogoMappingResponse> {
 	const res = await fetch(`/api/logo/mapping?name=${encodeURIComponent(name)}`);
 	if (!res.ok) return { domain: null, logoUrl: null };
-	return res.json();
+	const data = (await res.json()) as LogoMappingResponse;
+	const logoUrl =
+		typeof data.logoUrl === "string" &&
+		/^https:\/\//i.test(data.logoUrl.trim())
+			? data.logoUrl.trim()
+			: null;
+	return {
+		domain: typeof data.domain === "string" ? data.domain : null,
+		logoUrl,
+	};
 }
 
 interface EstablishmentLogoProps {
@@ -62,7 +71,11 @@ export function EstablishmentLogo({
 	});
 
 	const resolvedDomain = mappingData?.domain ?? null;
-	const logoUrl = mappingData?.logoUrl ?? null;
+	const rawLogoUrl = mappingData?.logoUrl ?? initialLogoUrl ?? null;
+	const logoUrl =
+		typeof rawLogoUrl === "string" && /^https:\/\//i.test(rawLogoUrl.trim())
+			? rawLogoUrl.trim()
+			: null;
 
 	const showLogo = Boolean(logoUrl) && !imgError;
 
