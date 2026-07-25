@@ -73,7 +73,7 @@
 		"@tanstack/react-table": "8.21.3",
 		"@tanstack/react-virtual": "^3.14.2",
 		"ai": "^6.0.195",
-		"better-auth": "1.6.14",
+		"better-auth": "1.6.22",
 		"canvas-confetti": "^1.9.4",
 		"class-variance-authority": "0.7.1",
 		"clsx": "2.1.1",
