@@ -6,6 +6,7 @@ import {
 	RiNotification3Line,
 	RiQrCodeLine,
 	RiShieldCheckLine,
+	RiWifiLine,
 } from "@remixicon/react";
 import type { ReactNode } from "react";
 import { ApiTokensForm } from "./api-tokens-form";
@@ -68,6 +69,22 @@ const steps: {
 export function CompanionTab({ tokens }: CompanionTabProps) {
 	return (
 		<div className="space-y-6">
+			<div className="rounded-md border border-border/60 bg-muted/40 p-4 text-sm">
+				<div className="flex items-start gap-3">
+					<RiWifiLine className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+					<div className="space-y-1">
+						<p className="font-medium">Uso seguro na rede local</p>
+						<p className="text-muted-foreground">
+							Configure o Companion com a URL do seu servidor na mesma rede Wi-Fi
+							(ex.: <code className="text-xs">http://192.168.x.x:3000</code>).
+							Não exponha a API <code className="text-xs">/api/inbox</code> na
+							internet. Revogue o token ao trocar de celular ou se suspeitar de
+							vazamento.
+						</p>
+					</div>
+				</div>
+			</div>
+
 			{/* Steps */}
 			<div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-4">
 				{steps.map((step, index) => (

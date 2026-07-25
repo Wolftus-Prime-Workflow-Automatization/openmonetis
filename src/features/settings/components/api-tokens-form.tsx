@@ -239,7 +239,8 @@ export function ApiTokensForm({ tokens }: ApiTokensFormProps) {
 										<ul className="list-disc list-inside mt-1 space-y-1">
 											<li>Guarde este token em local seguro</li>
 											<li>Ele não será exibido novamente</li>
-											<li>Use-o para configurar o app Android</li>
+											<li>Use apenas na sua rede local — não compartilhe</li>
+											<li>Revogue tokens antigos ao trocar de dispositivo</li>
 										</ul>
 									</div>
 								</div>
