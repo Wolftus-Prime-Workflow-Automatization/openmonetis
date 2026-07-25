@@ -29,9 +29,10 @@ next-env.d.ts
 *.lcov
 
 # === Environment Variables ===
-# Ignora todos os .env exceto .env.example
+# Ignora todos os .env exceto templates versionados
 .env*
 !.env.example
+!.env.personal.example
 
 # === Logs ===
 npm-debug.log*

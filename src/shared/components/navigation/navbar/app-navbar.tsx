@@ -2,6 +2,7 @@ import { AnimatedThemeToggler } from "@/shared/components/animated-theme-toggler
 import { NotificationBell } from "@/shared/components/navigation/navbar/notification-bell";
 import { RefreshPageButton } from "@/shared/components/refresh-page-button";
 import type { DashboardNotificationsSnapshot } from "@/shared/lib/types/notifications";
+import { isUpdateCheckDisabled } from "@/shared/lib/deploy/personal";
 import { checkForUpdate } from "@/shared/lib/version/check-update";
 import type { NavbarFinanceLinks } from "./nav-items";
 import { NavMenu } from "./nav-menu";
@@ -28,7 +29,9 @@ export async function AppNavbar({
 	notificationsSnapshot,
 	financeLinks,
 }: AppNavbarProps) {
-	const updateCheck = await checkForUpdate();
+	const updateCheck = isUpdateCheckDisabled()
+		? { hasUpdate: false, latestVersion: "", releaseUrl: "" }
+		: await checkForUpdate();
 
 	return (
 		<NavbarShell logoHref="/dashboard" fixed>

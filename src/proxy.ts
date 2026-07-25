@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { auth } from "@/shared/lib/auth/config";
 import { isSignupDisabled } from "@/shared/lib/auth/signup";
+import { isPersonalDeployment } from "@/shared/lib/deploy/personal";
 
 // Rotas protegidas que requerem autenticação
 const PROTECTED_ROUTES = [
@@ -87,6 +88,12 @@ export default async function proxy(request: NextRequest) {
 
 	const isAuthenticated = !!session?.user;
 	const signupDisabled = isSignupDisabled();
+
+	if (isPersonalDeployment() && pathname === "/") {
+		return NextResponse.redirect(
+			new URL(isAuthenticated ? "/dashboard" : "/login", request.url),
+		);
+	}
 
 	if (signupDisabled) {
 		if (pathname === "/signup" || pathname.startsWith("/signup/")) {
